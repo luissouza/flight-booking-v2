@@ -12,14 +12,14 @@
 
 ## Tools and plugins used in this project
 
-* Java JDK 20.0.0
-* Spring Boot 3.04
+* Java JDK 17.0.5
+* Spring Boot 2.70
 * Maven 3.87
 * Cucumber 6.10.2
 * Lombok
 * Postgres
 * Docker
-* OpenApi 2.0.2
+* OpenApi 1.62
 * EhCache 3.8.1
 * Slfj 1.7.36
 * Developed with: IntelliJ IDEA 2022.3 (Ultimate Edition)
