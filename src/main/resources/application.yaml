@@ -1,4 +1,7 @@
 spring:
+  cache:
+    jcache:
+      config: classpath:ehcache.xml
   codec:
     max-in-memory-size=100MB:
   sql.init.mode: always

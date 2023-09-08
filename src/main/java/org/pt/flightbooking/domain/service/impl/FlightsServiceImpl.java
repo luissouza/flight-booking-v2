@@ -26,6 +26,8 @@ import org.pt.flightbooking.domain.service.FlightsService;
 import org.pt.flightbooking.utils.DateTimeFormatterConfig;
 import org.pt.flightbooking.utils.NumberUtilsConfig;
 import org.pt.flightbooking.utils.StringUtils;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -41,30 +43,30 @@ public class FlightsServiceImpl implements FlightsService {
   }
 
   @Override
-  public Optional<?> filterFlights(final FlightSearchParams params) {
+    public Optional<?> filterFlights(final FlightSearchParams params) {
 
-    log.info("filterFlights - Method Filter Flights Started: {} ", params.toJson());
-    params.setFlyFrom(validateAirports(params));
+      log.info("filterFlights - Method Filter Flights Started: {} ", params.toJson());
+      params.setFlyFrom(validateAirports(params));
 
-    try {
+      try {
 
-      final FlightResponseDto flightsDto = getSkyPickerFlights(params);
-      final Map<String, List<FlightDetailsDto>> flightsAggPerDestination = groupFlightsByDestiny(flightsDto);
-      final Map<String, FlightResumeDetailsDto> resume = new HashMap<>();
-      flightsAggPerDestination.forEach((key, value) -> calcAvg(resume, key, value, flightsDto));
-      this.saveRecord(params);
+        final FlightResponseDto flightsDto = getSkyPickerFlights(params);
+        final Map<String, List<FlightDetailsDto>> flightsAggPerDestination = groupFlightsByDestiny(flightsDto);
+        final Map<String, FlightResumeDetailsDto> resume = new HashMap<>();
+        flightsAggPerDestination.forEach((key, value) -> calcAvg(resume, key, value, flightsDto));
+        this.saveRecord(params);
 
-      final FlightHeaderResponseDto flightHeaderResponseDto = FlightHeaderResponseDto.builder()
-          .dateTo(DateTimeFormatterConfig.convertIsoFormat(params.getDateTo()))
-          .dateFrom(DateTimeFormatterConfig.convertIsoFormat(params.getDateFrom())).averageFlights(resume).build();
+        final FlightHeaderResponseDto flightHeaderResponseDto = FlightHeaderResponseDto.builder()
+            .dateTo(DateTimeFormatterConfig.convertIsoFormat(params.getDateTo()))
+            .dateFrom(DateTimeFormatterConfig.convertIsoFormat(params.getDateFrom())).averageFlights(resume).build();
 
-      log.info("Flights AVG response {} ", flightHeaderResponseDto.toJson());
+        log.info("Flights AVG response {} ", flightHeaderResponseDto.toJson());
 
-      return Optional.of(flightHeaderResponseDto);
+        return Optional.of(flightHeaderResponseDto);
 
-    } catch (final Exception e) {
-      throw new AverageFlightsException(e);
-    }
+      } catch (final Exception e) {
+        throw new AverageFlightsException(e);
+      }
   }
 
 

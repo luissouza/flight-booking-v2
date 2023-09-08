@@ -8,6 +8,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @Builder
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 public final class FlightSearchParams implements Serializable {

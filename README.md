@@ -12,15 +12,15 @@
 
 ## Tools and plugins used in this project
 
-* Java JDK 17.0.5
-* Spring Boot 2.70
+* Java JDK 20.0.1
+* Spring Boot 3.2.0
 * Maven 3.87
-* Cucumber 6.10.2
+* Cucumber 7.13.0
 * Lombok
 * Postgres
 * Docker
-* OpenApi 1.62
-* EhCache 3.8.1
+* OpenApi 2.1.0
+* EhCache 3.10.8
 * Slfj 1.7.36
 * Developed with: IntelliJ IDEA 2022.3 (Ultimate Edition)
 
@@ -200,7 +200,7 @@
 2. Enter in the root of the project and run the project image with the command above:
 
    ```sh
-     docker compose up
+     docker compose up --build
     ```
 
 3. Consume the api: /api/v1/flights/avg, informing the parameters below:
