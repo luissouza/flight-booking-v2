@@ -199,9 +199,12 @@
 
 * This application uses Spring's native caching system, through spring-boot-starter-cache, the use of the annotation @Cacheable can be seen in the method below:
 
-<p align="center">
-<img src="https://i.postimg.cc/wMfVWypK/Capture-d-e-cran-2023-09-08-a-11-39-27.png" width="686" height="289">
-</p>
+```sh
+      public interface FlightsService {
+          @Cacheable(value = "filterFlights", key=CacheCustomKeys.FILTER_FLIGHTS_KEY)
+          Optional<?> filterFlights(FlightSearchParams params);
+      }
+```
 
 *******
 
