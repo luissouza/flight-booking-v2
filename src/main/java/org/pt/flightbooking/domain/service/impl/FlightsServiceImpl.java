@@ -26,8 +26,6 @@ import org.pt.flightbooking.domain.service.FlightsService;
 import org.pt.flightbooking.utils.DateTimeFormatterConfig;
 import org.pt.flightbooking.utils.NumberUtilsConfig;
 import org.pt.flightbooking.utils.StringUtils;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 @Slf4j

@@ -20,7 +20,6 @@
 * Postgres
 * Docker
 * OpenApi 2.1.0
-* EhCache 3.10.8
 * Slfj 1.7.36
 * Developed with: IntelliJ IDEA 2022.3 (Ultimate Edition)
 
@@ -176,6 +175,13 @@
   alt="Size Limit comment in pull request about bundle size changes">
 </p>
 
+### The Importance of Api Exception Handling
+
+* It is important to control exception handling so we can properly map exceptions to the ApiError
+  object and inform API clients appropriately. Additionally, we would need to create more handler
+  methods (the ones with @ExceptionHandler) for thrown exceptions within the application code.
+
+
 ### Exception response example:
 
 ```sh
@@ -186,6 +192,16 @@
         "detail": "The flight codes is invalid. Please insert two airport codes separated by commas, example: (OPO,LIS) or (LIS,OPO) to fetch data from PORTO and LISBON flights. Consult the link: https://airportcodes.aero/iata/ and see if the codes are valid.."
       }
 ```
+
+*******
+
+## Caching
+
+* This application uses Spring's native caching system, through spring-boot-starter-cache, the use of the annotation @Cacheable can be seen in the method below:
+
+<p align="center">
+<img src="https://i.postimg.cc/kg6NgSMh/Capture-d-e-cran-2023-09-08-a-10-42-45.png" width="686" height="289">
+</p>
 
 *******
 
@@ -300,6 +316,7 @@
   alt="Size Limit comment in pull request about bundle size changes"
   width="686" height="289">
 </p>
+
 
 ### Unit tests - JUnit
 
